@@ -5,8 +5,8 @@ const methodOverride = require('method-override')
 const connectDB = require("./config/db");
 const logger = require("./middlewares/logger")
 
-const blogAPI = require("./controllers/contactAPIController");
-const blogSSR = require("./controllers/contactSSRController");
+const blogAPI = require("./controllers/waterintakeAPIController");
+const blogSSR = require("./controllers/waterintakeSSRController");
  
 app.use(express.json());
 app.use(express.urlencoded({ extended: true }));
@@ -26,35 +26,35 @@ connectDB();
  
 // SSR
 
-// End1: Route to render index.html with contacts using EJS
-app.get("/", blogSSR.renderContacts);
-// End2: Define a route to render the addcontact.ejs view
-app.get("/addcontact", blogSSR.renderForm);
-// End3:Route to add  contact using EJ
-app.post("/addcontact", blogSSR.addContact);
-// Define a route to render the singlecontact.ejs view
-app.get("/single-contact/:id", blogSSR.renderContact);
-// Define a route to delete singlecontact
-app.delete("/single-contact/:id", blogSSR.deleteContact);
-// Define a route to update single contact.ejs
-app.put("/single-contact/:id", blogSSR.updateContact);
-// Define contact to update
-app.get("/single-contact/update/:id", blogSSR.renderUpdateContact);
+// End1: Route to render index.html with waterintakes using EJS
+app.get("/", blogSSR.renderWaterintakes);
+// End2: Define a route to render the addwaterintake.ejs view
+app.get("/addwaterintake", blogSSR.renderForm);
+// End3:Route to add  waterintake using EJ
+app.post("/addwaterintake", blogSSR.addWaterintake);
+// Define a route to render the singlewaterintake.ejs view
+app.get("/single-waterintake/:id", blogSSR.renderWaterintake);
+// Define a route to delete singlewaterintake
+app.delete("/single-waterintake/:id", blogSSR.deleteWaterintake);
+// Define a route to update single waterintake.ejs
+app.put("/single-waterintake/:id", blogSSR.updateWaterintake);
+// Define waterintake to update
+app.get("/single-waterintake/update/:id", blogSSR.renderUpdateWaterintake);
 
 // API
-// GET all Contacts
-app.get("/api/contacts", blogAPI.getContacts);
-// POST a new Contact
-app.post("/api/contacts", blogAPI.addContact);
-// GET a single Contact
-app.get("/api/contacts/:id", blogAPI.getContact);
+// GET all Waterintakes
+app.get("/api/waterintakes", blogAPI.getWaterintakes);
+// POST a new Waterintake
+app.post("/api/waterintakes", blogAPI.addWaterintake);
+// GET a single Waterintake
+app.get("/api/waterintakes/:id", blogAPI.getWaterintake);
 
-// Update Contact using PUT
-app.put("/api/contacts/:id", blogAPI.updateContact);
-// DELETE a Contact
-app.delete("/api/contacts/:id", blogAPI.deleteContact);
-// DELETE all Contact
-app.delete("/api/contacts", blogAPI.deleteAllContacts);
+// Update Waterintake using PUT
+app.put("/api/waterintakes/:id", blogAPI.updateWaterintake);
+// DELETE a Waterintake
+app.delete("/api/waterintakes/:id", blogAPI.deleteWaterintake);
+// DELETE all Waterintake
+app.delete("/api/waterintakes", blogAPI.deleteAllWaterintakes);
 
 const PORT = 4000;
 
